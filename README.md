@@ -4,7 +4,7 @@
 
 
 ## 참고사항‼️
-***2024.06.17부터 적용(이전까지 [Notion](https://jgw805.notion.site/Algorithm-Data-Structure-Study-Diary-1d47918634c24d0abcac54311ed66164)을 통해 정리)**
+***2024.06.17부터 적용(이전까지 [Notion](https://jgw805.notion.site/Algorithm-Data-Structure-Study-Diary-1d47918634c24d0abcac54311ed66164)을 통해 정리)** _- 단, 문제 풀이 정리는 Notion에서 동일하게 작성할 것_
 
 ### Format
 **{Keyword}: {출처} {유형} {난이도} {제목}**
