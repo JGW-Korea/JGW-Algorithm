@@ -1,4 +1,3 @@
-
 function solution(h, w, n, stickers) {
   // H x W 크기의 모눈종이를 2차원 배열로 표현한다.
   let paper = Array.from({ length: h }, () => new Array(w).fill(0));
@@ -19,7 +18,6 @@ function solution(h, w, n, stickers) {
 
   // 모눈 종이에 스티커를 붙이는 함수
   function pastable(x, y, sticker, r, c) {
-
     // 스티커를 붙일 수 있는지 확인한다.
     for (let i = 0; i < r; i++) {
       for (let j = 0; j < c; j++) {
@@ -62,24 +60,23 @@ function solution(h, w, n, stickers) {
   }
 
   // 스티커가 붙여진 영역 구하기
-  if(count < 2) return 0; // 스티커가 2개 이상 붙여지지 않았다면 0을 반환한다.
+  if (count < 2)
+    return 0; // 스티커가 2개 이상 붙여지지 않았다면 0을 반환한다.
   else {
     let answer = 0;
 
-    for(let i = 0; i < h; i++) {
-      for(let j = 0; j < w; j++) {
-        if(paper[i][j] === 1) answer += 1;
+    for (let i = 0; i < h; i++) {
+      for (let j = 0; j < w; j++) {
+        if (paper[i][j] === 1) answer += 1;
       }
     }
 
     return answer; // 스티커 영역을 반환한다.
   }
-  
 }
 
 const fs = require("fs");
 const input = fs.readFileSync("index.txt").toString().trim().split("\n"); // 제출 시 /dev/stdin로 수정
-
 
 const [h, w] = input[0].split(" ").map(Number);
 const n = Number(input[1]);

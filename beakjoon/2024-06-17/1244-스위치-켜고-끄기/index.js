@@ -29,11 +29,15 @@ function solution(switchBtnStatus, students, studentsInfo) {
   switchBtnStatus.shift(); // 편의를 위해 값을 추가한 값을 삭제한다.
 
   let result = "";
+  
   for (let i = 0; i < switchBtnStatus.length; i++) {
+    
     result += switchBtnStatus[i] + " ";
+    
     if ((i + 1) % 20 === 0) {
       result += "\n";
     }
+    
   }
 
   return result.trim(); // 스위치 상태를 반환한다.
