@@ -1,3 +1,4 @@
+
 function solution(h, w, n, stickers) {
   // H x W 크기의 모눈종이를 2차원 배열로 표현한다.
   let paper = Array.from({ length: h }, () => new Array(w).fill(0));
@@ -78,6 +79,7 @@ function solution(h, w, n, stickers) {
 
 const fs = require("fs");
 const input = fs.readFileSync("index.txt").toString().trim().split("\n"); // 제출 시 /dev/stdin로 수정
+
 
 const [h, w] = input[0].split(" ").map(Number);
 const n = Number(input[1]);
