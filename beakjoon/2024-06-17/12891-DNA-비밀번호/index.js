@@ -1,61 +1,90 @@
-// 현재 윈도우의 카운트가 주어진 조건을 만족하는지 확인하는 함수
-function checkPassword(currentCount, requiredCount) {
-  for (let i = 0; i < 4; i++) {
-    if (currentCount[i] < requiredCount[i]) {
-      return false;
+function solution(S, P, pwd, count) {
+  const check = new Array(4).fill(0); // 민호가 임의로 만든 비밀번호의 DNA 문자열 포함 개수
+
+  function checkCounting() {
+    for(let i = 0; i < 4; i++) {
+      if(check[i] < count[i]) return false;
     }
+    
+    return true;
   }
-  return true;
-}
-
-function solution(s, p, pwd, count) {
-  const dnaStr = ['A', 'C', 'G', 'T'];
-
-  let answer = 0; // 비밀번호 종류의 수
-
-  let currentCount = new Array(4).fill(0); // 현재 윈도우 내 각 DNA 문자 개수
-  let start = 0; // 슬라이딩 윈도우 시작점
-
-  // 초기 윈도우 설정
-  for (let i = 0; i < p; i++) {
-    const index = dnaStr.indexOf(pwd[i]);
-    if (index !== -1) {
-      currentCount[index] += 1;
-    }
-  }
-
-  // 초기 윈도우가 조건을 만족하는지 확인
-  if (checkPassword(currentCount, count)) {
-    answer += 1;
-  }
-
-  // 슬라이딩 윈도우를 오른쪽으로 이동
-  for (let end = p; end < s; end++) {
-    const newIndex = dnaStr.indexOf(pwd[end]);
-    const oldIndex = dnaStr.indexOf(pwd[start]);
-
-    if (newIndex !== -1) {
-      currentCount[newIndex] += 1;
-    }
-    if (oldIndex !== -1) {
-      currentCount[oldIndex] -= 1;
-    }
-
-    start += 1;
-
-    if (checkPassword(currentCount, count)) {
-      answer += 1;
+  
+  for(let i = 0; i < P; i++) { // 첫 부분 문자열 개수
+    switch(pwd[i]) {
+      case 'A':
+        check[0] += 1;
+        break;
+        
+      case 'C':
+        check[1] += 1;
+        break;
+        
+      case 'G':
+        check[2] += 1;
+        break;
+        
+      case 'T':
+        check[3] += 1;
+        break;
     }
   }
 
+  let answer = 0; // 민호가 만들 수 있는 비밀번호의 개수
+  
+  if(checkCounting()) answer += 1;
+
+  let i;
+
+  for(let j = P; j < S; j++) { // 부분 문자열 만들기
+    i = j - P;
+
+    switch(pwd[i]) { // 부분 문자열 첫 문자 제거하기
+      case 'A':
+        check[0] -= 1;
+        break;
+
+      case 'C':
+        check[1] -= 1;
+        break;
+
+      case 'G':
+        check[2] -= 1;
+        break;
+
+      case 'T':
+        check[3] -= 1;
+        break;
+    }
+
+    switch(pwd[j]) { // 부분 문자열 마지막 문자 추가하기
+      case 'A':
+        check[0] += 1;
+        break;
+
+      case 'C':
+        check[1] += 1;
+        break;
+
+      case 'G':
+        check[2] += 1;
+        break;
+
+      case 'T':
+        check[3] += 1;
+        break;
+    }
+
+    if(checkCounting()) answer += 1;
+  }
+  
   return answer;
 }
 
 const fs = require('fs');
 const input = fs.readFileSync('index.txt').toString().trim().split('\n');
 
-const [s, p] = input[0].split(' ').map(Number);
+const [S, P] = input[0].split(' ').map(Number);
 const pwd = input[1];
 const count = input[2].split(' ').map(Number);
 
-console.log(solution(s, p, pwd, count));
+console.log(solution(S, P, pwd, count));
