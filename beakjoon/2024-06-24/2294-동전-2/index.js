@@ -11,7 +11,7 @@ function solution(N, K, coins) {
     }
   }
 
-  return dp[K];
+  return dp[K] === Infinity ? -1 : dp[K];
 }
 
 const fs = require('fs');
