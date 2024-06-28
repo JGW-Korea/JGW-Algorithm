@@ -11,7 +11,7 @@ function solution(R, C, graph) {
   function dfs(currentX, currentY, count) {
     let maxCount = count;
 
-    // 현재 알파벳을 사용하고 있다고 표시
+    // 현재 위치에 적힌 알파벳을 사용하고 있다고 표시
     visited[charCodeReturn(currentX, currentY)] = true;
 
     for(let i = 0; i < 4; i++) {
