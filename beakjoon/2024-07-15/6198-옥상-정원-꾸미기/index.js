@@ -1,20 +1,23 @@
+function solution(N, heights) {
+  let answer = 0;
+  let idx = 0;
+  let stack = [];
+
+  while(N--) {
+    let currentHeight = heights[idx++];
+    
+    while(stack.length && stack[stack.length - 1] <= currentHeight) {
+      stack.pop();
+    }
+
+    answer += stack.length;
+    stack.push(currentHeight);
+  }
+
+  return answer;
+}
+
 const fs = require('fs');
 const [N, ...heights] = fs.readFileSync('index.txt').toString().trim().split('\n').map(Number);
 
-let result = 0;
-
-for(let i = 0; i < N; i++) {
-  let count = 0;
-
-  for(let j = i + 1; j < N; j++) {
-    if(heights[i] > heights[j]) {
-      count += 1;
-    } else {
-      break;
-    }
-  }
-
-  result += count;
-}
-
-console.log(result);
+console.log(solution(N, heights));
