@@ -6,13 +6,15 @@
 ## 참고사항‼️
 ***2024.06.17부터 적용(이전까지 [Notion](https://jgw805.notion.site/Algorithm-Data-Structure-Study-Diary-1d47918634c24d0abcac54311ed66164)을 통해 정리)** _- 단, 문제 풀이 정리는 Notion에서 동일하게 작성할 것_
 
+*** improve(true, fail) : 202407.15부터 적용
+
 ### Format
 **{Keyword}: {출처} {유형} {난이도} {제목}**
 
 #### Keyword
 - `solve` : 풀이에 성공한 문제
 - `fail` : 풀이에 실패한 문제
-- `improve` : 코드를 개선해서 성공한 문제
+- `improve(solve, fail)` : 코드 성공, 실패 상관없이 다시 풀어본 문제
 - `docs` : readme 등 문서 수정
 
 
