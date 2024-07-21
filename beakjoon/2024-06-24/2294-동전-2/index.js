@@ -1,16 +1,15 @@
 function solution(N, K, coins) {
   const dp = new Array(K + 1).fill(Infinity); // DP 테이블 정의
 
-  // dp 초기값 정의
-  dp[0] = 0; 
+  // DP 테이블 초기값 지정
+  dp[0] = 0;
 
-  // 점화식 : DP[i] = Math.min(DP[j], DP[j - coins[i]] + 1)
-  for(let i = 0; i < N; i++) { // 각 동전에 대한 반복
-    for(let j = coins[i]; j < K + 1; j++) { // DP 테이블 갱신에 대한 반복문
-      dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1);
+  for(const coin of coins) {
+    for(let i = coin; i <= K; i++) {
+      dp[i] = Math.min(dp[i], dp[i - coin] + 1);
     }
   }
-
+  
   return dp[K] === Infinity ? -1 : dp[K];
 }
 
