@@ -24,12 +24,11 @@ function solution(K, N, final, board) {
   }
 
   for(let i = 0; i < alpha.length - 1; i++) {
-    if(alpha[i] === final[i + 1] && alpha[i + 1] === final[i]) result += '-';
+    if(alpha[i] === final[i + 1] && alpha[i + 1] === final[i]) {
+      result += '-';
+      [alpha[i], alpha[i + 1]] = [alpha[i + 1], alpha[i]];
+    }
     else result += '*';
-  }
-
-  for(let i = 0; i < alpha.length - 1; i++) {
-    if(result[i] === '-') [alpha[i], alpha[i + 1]] = [alpha[i + 1], alpha[i]];
   }
 
   if(alpha.join('') === final.join('')) return result;
