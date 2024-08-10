@@ -1,37 +1,26 @@
 function solution(N, tree, node1, node2) {
   const parent = new Array(N + 1).fill(0);
-  const depth = new Array(N + 1).fill(0);
 
-  function dfs(node, dep) {
-    depth[node] = dep;
-    for (const child of tree[node]) {
-      parent[child] = node;
-      dfs(child, dep + 1);
-    }
-  }
-
-  // 루트 노드를 찾기
-  let root = 0;
+  // 각 노드의 부모를 저장
   for (let i = 1; i <= N; i++) {
-    if (parent[i] === 0) {
-      root = i;
-      break;
+    for (const child of tree[i]) {
+      parent[child] = i;
     }
   }
 
-  dfs(root, 0);
-
-  // 깊이 맞추기
-  while (depth[node1] > depth[node2]) node1 = parent[node1];
-  while (depth[node2] > depth[node1]) node2 = parent[node2];
-
-  // 공통 조상 찾기
-  while (node1 !== node2) {
+  // node1의 조상들을 저장
+  const ancestors = new Set();
+  while (node1 !== 0) {
+    ancestors.add(node1);
     node1 = parent[node1];
+  }
+
+  // node2의 조상을 탐색하며 공통 조상을 찾음
+  while (!ancestors.has(node2)) {
     node2 = parent[node2];
   }
 
-  return node1;
+  return node2;
 }
 
 const fs = require('fs');
