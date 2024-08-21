@@ -5,8 +5,6 @@ function solution(X, Y) {
   const plus = [-1, 0, 1];
   visited[X] = 1;
   
-  let day = 1;
-
   // BFS 탐색 로직
   while(queue.length) {
     const [current, height] = queue.shift();
